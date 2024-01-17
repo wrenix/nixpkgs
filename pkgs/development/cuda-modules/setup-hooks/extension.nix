@@ -1,4 +1,19 @@
 final: _: {
+  # Helper hook used in both autoAddCudaCompatRunpathHook and
+  # autoAddDriverRunpathHook that applies a generic patching action to all elf
+  # files with a dynamic linking section.
+  autoFixElfFiles =
+    final.callPackage
+      (
+        {makeSetupHook}:
+         makeSetupHook
+          {
+            name = "auto-fix-elf-files";
+          }
+          ./auto-fix-elf-files.sh
+      )
+      {};
+
   # Internal hook, used by cudatoolkit and cuda redist packages
   # to accommodate automatic CUDAToolkit_ROOT construction
   markForCudatoolkitRootHook =
@@ -32,16 +47,16 @@ final: _: {
       {}
     );
 
-  autoAddOpenGLRunpathHook =
+  autoAddDriverRunpathHook =
     final.callPackage
       (
-        {addOpenGLRunpath, makeSetupHook}:
+        {addDriverRunpath, autoFixElfFiles, makeSetupHook}:
         makeSetupHook
           {
             name = "auto-add-opengl-runpath-hook";
-            propagatedBuildInputs = [addOpenGLRunpath];
+            propagatedBuildInputs = [addDriverRunpath autoFixElfFiles];
           }
-          ./auto-add-opengl-runpath-hook.sh
+          ./auto-add-driver-runpath-hook.sh
       )
       {};
 
@@ -53,10 +68,12 @@ final: _: {
   autoAddCudaCompatRunpathHook =
     final.callPackage
       (
-        {makeSetupHook, cuda_compat ? null }:
+        {makeSetupHook, autoFixElfFiles, cuda_compat ? null }:
         makeSetupHook
           {
             name = "auto-add-cuda-compat-runpath-hook";
+            propagatedBuildInputs = [autoFixElfFiles];
+
             substitutions = {
               # Hotfix Ofborg evaluation
               libcudaPath = if final.flags.isJetsonBuild then "${cuda_compat}/compat" else null;

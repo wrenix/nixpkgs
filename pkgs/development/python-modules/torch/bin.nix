@@ -40,7 +40,7 @@ in buildPythonPackage {
   nativeBuildInputs = lib.optionals stdenv.isLinux [
     addOpenGLRunpath
     autoPatchelfHook
-    cudaPackages.autoAddOpenGLRunpathHook
+    cudaPackages.autoAddDriverRunpathHook
   ];
 
   buildInputs = lib.optionals stdenv.isLinux (with cudaPackages; [
