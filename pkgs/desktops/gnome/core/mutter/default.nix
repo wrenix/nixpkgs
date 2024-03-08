@@ -36,6 +36,7 @@
 , libinput
 , libdrm
 , libei
+, libdisplay-info
 , gsettings-desktop-schemas
 , glib
 , atk
@@ -125,6 +126,7 @@ stdenv.mkDerivation (finalAttrs: {
     libcanberra
     libdrm
     libei
+    libdisplay-info
     libgudev
     libinput
     libstartup_notification
