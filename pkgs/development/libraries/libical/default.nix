@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch2
 , pkgsBuildBuild
 , pkgsBuildHost
 , cmake
@@ -80,6 +81,14 @@ stdenv.mkDerivation rec {
     # https://github.com/libical/libical/issues/350
     ./respect-env-tzdir.patch
   ];
+
+  postPatch = ''
+    # Fix typo in test env setup
+    # https://github.com/libical/libical/commit/03c02ced21494413920744a400c638b0cb5d493f
+    substituteInPlace src/test/libical-glib/CMakeLists.txt \
+      --replace-fail "''${CMAKE_BINARY_DIR}/src/libical-glib;\$ENV{GI_TYPELIB_PATH}" "''${CMAKE_BINARY_DIR}/src/libical-glib:\$ENV{GI_TYPELIB_PATH}" \
+      --replace-fail "''${LIBRARY_OUTPUT_PATH};\$ENV{LD_LIBRARY_PATH}" "''${LIBRARY_OUTPUT_PATH}:\$ENV{LD_LIBRARY_PATH}"
+  '';
 
   # Using install check so we do not have to manually set
   # LD_LIBRARY_PATH and GI_TYPELIB_PATH variables
