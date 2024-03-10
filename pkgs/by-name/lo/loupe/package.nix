@@ -15,6 +15,7 @@
 , lcms2
 , libadwaita
 , libgweather
+, libseccomp
 , glycin-loaders
 , gnome
 }:
@@ -51,13 +52,14 @@ stdenv.mkDerivation (finalAttrs: {
     lcms2
     libadwaita
     libgweather
+    libseccomp
   ];
 
   postPatch = ''
     # Replace hash of file we patch in vendored glycin.
     jq \
-      --arg hash "$(sha256sum vendor/glycin/src/dbus.rs | cut -d' ' -f 1)" \
-      '.files."src/dbus.rs" = $hash' \
+      --arg hash "$(sha256sum vendor/glycin/src/sandbox.rs | cut -d' ' -f 1)" \
+      '.files."src/sandbox.rs" = $hash' \
       vendor/glycin/.cargo-checksum.json \
       | sponge vendor/glycin/.cargo-checksum.json
   '';
