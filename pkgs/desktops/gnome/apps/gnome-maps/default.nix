@@ -24,6 +24,7 @@
 , gjs
 , libadwaita
 , geocode-glib_2
+, tzdata
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -35,7 +36,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-czmc4tFk5G8ypqaPu0Qzd09OEOVOt4ll7G3r3EozCxw=";
   };
 
-  doCheck = true;
+  doCheck = !stdenv.isDarwin;
 
   nativeBuildInputs = [
     gettext
@@ -80,6 +81,19 @@ stdenv.mkDerivation (finalAttrs: {
   preCheck = ''
     # “time.js” included by “timeTest” and “translationsTest” depends on “org.gnome.desktop.interface” schema.
     export XDG_DATA_DIRS="${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:$XDG_DATA_DIRS"
+    export HOME=$(mktemp -d)
+    export TZDIR=${tzdata}/share/zoneinfo
+
+    # Our gobject-introspection patches make the shared library paths absolute
+    # in the GIR files. When running tests, the library is not yet installed,
+    # though, so we need to replace the absolute path with a local one during build.
+    # We are using a symlink that we will delete before installation.
+    mkdir -p $out/lib/gnome-maps
+    ln -s $PWD/lib/libgnome-maps.so.0 $out/lib/gnome-maps/libgnome-maps.so.0
+  '';
+
+  postCheck = ''
+    rm $out/lib/gnome-maps/libgnome-maps.so.0
   '';
 
   passthru = {
