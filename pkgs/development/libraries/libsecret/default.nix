@@ -34,12 +34,12 @@ stdenv.mkDerivation rec {
     hash = "sha256-Fj0I14O+bUq5qXnOtaT+y8HZZg08NBaMWBMBzVORKyA=";
   };
 
-  ptaches = [
-   # https://gitlab.gnome.org/GNOME/libsecret/-/merge_requests/141
-   (fetchpatch2 {
-     url = "https://gitlab.gnome.org/GNOME/libsecret/-/commit/208989323211c756dff690115e5cbde5ef7491ce.patch";
-     hash = "sha256-DtRbqyyoMttEYf6B16m9O72Yjurv6rpbnqH7AlrAU4k=";
-   })
+  patches = [
+    # https://gitlab.gnome.org/GNOME/libsecret/-/merge_requests/141
+    (fetchpatch2 {
+      url = "https://gitlab.gnome.org/GNOME/libsecret/-/commit/208989323211c756dff690115e5cbde5ef7491ce.patch";
+      hash = "sha256-DtRbqyyoMttEYf6B16m9O72Yjurv6rpbnqH7AlrAU4k=";
+    })
   ];
 
   depsBuildBuild = [
