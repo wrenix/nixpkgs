@@ -1,7 +1,6 @@
 { lib
 , pkg-config
 , fetchurl
-, fetchpatch2
 , meson
 , ninja
 , wrapGAppsHook
@@ -29,13 +28,13 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "orca";
-  version = "46.beta";
+  version = "46.0";
 
   format = "other";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "0LEyoov/D8dO2hRzb2cXBwjXAY7if66GGTbfrpAASTA=";
+    hash = "sha256-8h2jzBVfelFNN0JkoEzijJCibLP93wtYuJzR1/3Qpk8=";
   };
 
   patches = [
@@ -45,13 +44,6 @@ python3.pkgs.buildPythonApplication rec {
       lsof = "${lsof}/bin/lsof";
       pgrep = "${procps}/bin/pgrep";
       xkbcomp = "${xkbcomp}/bin/xkbcomp";
-    })
-
-    # Allow building without git executable
-    # FIXME (GNOME 46.rc): drop this
-    (fetchpatch2 {
-      url = "https://gitlab.gnome.org/GNOME/orca/-/commit/906fb792e043345cfcc9f0d0d2172b03b6c194fb.patch";
-      hash = "sha256-oSpKQyCBxlG95P4qNwMgDYv79S7qP55nOsklLyeZRec=";
     })
   ];
 
