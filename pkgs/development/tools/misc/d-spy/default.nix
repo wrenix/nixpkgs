@@ -15,13 +15,13 @@
 
 stdenv.mkDerivation rec {
   pname = "d-spy";
-  version = "1.9.1";
+  version = "1.10.0";
 
   outputs = [ "out" "lib" "dev" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/d-spy/${lib.versions.majorMinor version}/d-spy-${version}.tar.xz";
-    sha256 = "sha256-4XYGeJd2VvP5Le+9TCAs+JH1uHT88Fi66sZ8j1cMCf0=";
+    sha256 = "sha256-VVgSucZUBVHaWZ7oFHiArTkVuTyH4XV7bRz9kKDgXlM=";
   };
 
   nativeBuildInputs = [
