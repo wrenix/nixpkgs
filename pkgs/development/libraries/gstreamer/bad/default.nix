@@ -69,6 +69,7 @@
 , zbar
 , wayland-protocols
 , wildmidi
+, svt-av1
 , fluidsynth
 , libva
 , libvdpau
@@ -193,6 +194,7 @@ stdenv.mkDerivation rec {
     zxing-cpp
     usrsctp
     wildmidi
+    svt-av1
   ] ++ lib.optionals opencvSupport [
     opencv4
   ] ++ lib.optionals enableZbar [
@@ -281,7 +283,6 @@ stdenv.mkDerivation rec {
     "-Dmusepack=disabled"
     "-Dopenni2=disabled" # not packaged in nixpkgs as of writing
     "-Dopensles=disabled" # not packaged in nixpkgs as of writing
-    "-Dsvtav1=disabled" # not packaged in nixpkgs as of writing
     "-Dsvthevcenc=disabled" # required `SvtHevcEnc` library not packaged in nixpkgs as of writing
     "-Dteletext=disabled" # required `zvbi` library not packaged in nixpkgs as of writing
     "-Dtinyalsa=disabled" # not packaged in nixpkgs as of writing
