@@ -27,13 +27,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "folks";
-  version = "0.15.7";
+  version = "0.15.8";
 
   outputs = [ "out" "dev" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/folks/${lib.versions.majorMinor finalAttrs.version}/folks-${finalAttrs.version}.tar.xz";
-    sha256 = "Eg8hnvYyEsqpWuf2rrZOKZKLCxqLlFIFQwSgDQ80eHE=";
+    sha256 = "lUpq+z43jwHTEP1EN5DyNcsOtx4hOc/08F8Jq3JeScI=";
   };
 
   nativeBuildInputs = [
