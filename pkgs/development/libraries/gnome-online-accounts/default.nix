@@ -31,7 +31,7 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-online-accounts";
-  version = "3.49.4";
+  version = "3.50.0";
 
   outputs = [ "out" "dev" ] ++ lib.optionals enableBackend [ "man" "devdoc" ];
 
@@ -40,7 +40,7 @@ stdenv.mkDerivation rec {
     owner = "GNOME";
     repo = "gnome-online-accounts";
     rev = version;
-    sha256 = "sha256-NsNvYNi+2GAqDkY7O1rOH63sKLd3pOTDiNxtIOahnBs=";
+    sha256 = "sha256-/RQ3FkFjyz/xdZmj/t296hysXX3pFLgrum2qNl5GSkM=";
   };
 
   mesonFlags = [
