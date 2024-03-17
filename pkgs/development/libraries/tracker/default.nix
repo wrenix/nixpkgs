@@ -34,13 +34,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "tracker";
-  version = "3.7.rc";
+  version = "3.7.0";
 
   outputs = [ "out" "dev" "devdoc" ];
 
   src = fetchurl {
     url = with finalAttrs; "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-4nXVTG50cA8dNXR/AslWrW2nSSHfPXhsy7c3ppI081w=";
+    sha256 = "sha256-RrjBb/KJ2VB7qhEscXhFogD+PR/8wjJFYuAsQNuaFR0=";
   };
 
   strictDeps = true;
