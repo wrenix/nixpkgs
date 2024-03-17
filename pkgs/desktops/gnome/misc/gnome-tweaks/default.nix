@@ -24,12 +24,12 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "gnome-tweaks";
-  version = "46.beta";
+  version = "46.0";
   format = "other";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-uvsXEca24YHqPdujihyqmQckCXLKMVBxrp6UFd5lGFE=";
+    sha256 = "sha256-Fnh4Y0H2ZKxFgHhCIqFkCfqb9cx6XxtG3O/SqhPdujE=";
   };
 
   patches = [
