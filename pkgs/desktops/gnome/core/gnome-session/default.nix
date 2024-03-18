@@ -30,13 +30,13 @@
 stdenv.mkDerivation rec {
   pname = "gnome-session";
   # Also bump ./ctl.nix when bumping major version.
-  version = "46.rc";
+  version = "46.0";
 
   outputs = [ "out" "sessions" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-session/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-euXtzr7Y6/qhPoGdbPcC38eaqEeBz4o6P5zXI+vkml4=";
+    sha256 = "sha256-xuFiSvYJC8ThoZH+Imir+nqN4HgxynpX8hfmeb97mlQ=";
   };
 
   patches = [
