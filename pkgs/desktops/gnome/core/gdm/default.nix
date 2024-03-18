@@ -43,13 +43,13 @@ in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gdm";
-  version = "46.rc";
+  version = "46.0";
 
   outputs = [ "out" "dev" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/gdm/${lib.versions.major finalAttrs.version}/${finalAttrs.pname}-${finalAttrs.version}.tar.xz";
-    sha256 = "sha256-cymxkG0Go76NK9iDFqyIgRY/UMSYahGiVaOZXB0//sA=";
+    sha256 = "sha256-jWy1IXbspItrvxz+L9rgjZZ3taDyvKYA3uRgTeDdHvw=";
   };
 
   mesonFlags = [
