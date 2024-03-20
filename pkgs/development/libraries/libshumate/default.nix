@@ -69,7 +69,9 @@ stdenv.mkDerivation rec {
     "-Ddemos=true"
   ];
 
-  doCheck = !stdenv.isDarwin;
+  # Disable until upstream resolves tests failing in release builds
+  # https://gitlab.gnome.org/GNOME/libshumate/-/issues/71
+  doCheck = false;
 
   checkPhase = ''
     runHook preCheck
