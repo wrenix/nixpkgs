@@ -25,6 +25,7 @@
 , tpm2-tss
 , fuse3
 , gnome
+, polkit
 }:
 
 stdenv.mkDerivation rec {
@@ -63,6 +64,7 @@ stdenv.mkDerivation rec {
     libxkbcommon
     pipewire
     systemd
+    polkit # For polkit-gobject
   ];
 
   mesonFlags = [
