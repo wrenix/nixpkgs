@@ -32,9 +32,6 @@ let
     document-font-name="Noto Sans 10"
     monospace-font-name="Hack 10"
 
-    [org.gnome.desktop.peripherals.touchpad:Budgie]
-    tap-to-click=true
-
     [org.gnome.desktop.wm.preferences:Budgie]
     titlebar-font="Noto Sans Bold 10"
 
