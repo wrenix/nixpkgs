@@ -1,7 +1,7 @@
 { lib
 , buildPythonPackage
 , cryptography
-, cython_3
+, cython
 , fetchPypi
 , pythonOlder
 , setuptools
@@ -21,7 +21,7 @@ buildPythonPackage rec {
   };
 
   nativeBuildInputs = [
-    cython_3
+    cython
     setuptools
     wheel
   ];
